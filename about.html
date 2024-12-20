@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Travel Bloom</title>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600&display=swap" rel="stylesheet"> <!-- Google Fonts Link -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> <!-- Font Awesome Link -->
+    <style>
+        body {
+            font-family: 'Urbanist', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://img.freepik.com/free-photo/travel-concept-with-landmarks_23-2149153256.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+            padding-top: 80px; /* Add padding to prevent overlap with navbar */
+        }
+
+        /* Navigation Bar Styling */
+        nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2em;
+        }
+
+        nav ul li a:hover {
+            color: #FFD700; /* Hover effect on links */
+        }
+
+        /* Main Content Section */
+        .content {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 40px 20px; /* Increased padding for spacing */
+            border-radius: 10px;
+            max-width: 900px;
+            margin-top: 120px; /* Added margin-top to prevent content overlap with navbar */
+            margin-bottom: 80px; /* Added margin-bottom for spacing at the bottom */
+            width: 100%;
+            box-sizing: border-box; /* Ensure padding is inside the element */
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        /* Grid Layout for Team Members */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .team-member {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .team-member h2 {
+            font-size: 2em;
+            margin: 10px 0;
+        }
+
+        .team-member p {
+            font-size: 1em;
+        }
+
+        .social-icons a {
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 2em;
+            color: white;
+        }
+
+        .social-icons a:hover {
+            color: #FFD700; /* Hover effect on icons */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h1>About Us</h1>
+        <p>At Travel Bloom, we are passionate about helping travelers explore the world. Our team is dedicated to providing personalized recommendations and insights to make your travel experiences unforgettable. We believe in sharing the beauty of travel with everyone, offering advice for every kind of traveler, from adventure seekers to relaxation enthusiasts.</p>
+        
+        <h2>Meet the Team</h2>
+        
+        <div class="team-grid">
+            <!-- Team Member 1 -->
+            <div class="team-member">
+                <h2>Zohaib Ahmed</h2>
+                <p>Founder & CEO</p>
+                <p>Zohaib leads Travel Bloom with a vision to make travel more accessible and enjoyable for everyone. His passion for exploring new destinations fuels the company's commitment to personalized travel recommendations.</p>
+            </div>
+            
+            <!-- Team Member 2 -->
+            <div class="team-member">
+                <h2>John Doe</h2>
+                <p>Marketing Director</p>
+                <p>John is responsible for spreading the word about Travel Bloom. His creativity and marketing strategies help us reach travelers looking for their next great adventure.</p>
+            </div>
+
+            <!-- Team Member 3 -->
+            <div class="team-member">
+                <h2>Jane Smith</h2>
+                <p>Head of Travel Research</p>
+                <p>Jane's expertise in travel destinations and trends ensures that Travel Bloom provides up-to-date and relevant recommendations to every user.</p>
+            </div>
+        </div>
+
+        <div class="social-icons">
+            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+
+</body>
+</html>
