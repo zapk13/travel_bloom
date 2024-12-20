@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Travel Bloom</title>
-    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600&display=swap" rel="stylesheet"> <!-- Google Fonts Link -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> <!-- Font Awesome Link -->
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Urbanist', sans-serif;
@@ -23,7 +23,6 @@
             flex-direction: column;
         }
 
-        /* Navigation Bar Styling */
         nav {
             position: absolute;
             top: 0;
@@ -60,7 +59,6 @@
             color: #FFD700;
         }
 
-        /* Search Bar in the Header */
         .search-bar {
             display: flex;
             align-items: center;
@@ -91,7 +89,6 @@
             color: #FFD700;
         }
 
-        /* Content Section */
         .content {
             background-color: rgba(0, 0, 0, 0.6);
             padding: 30px;
@@ -121,7 +118,6 @@
             color: #FFD700;
         }
 
-        /* Recommendations Section */
         .recommendations {
             margin-top: 30px;
             display: grid;
@@ -162,17 +158,18 @@
             <li><a href="contact.html">Contact Us</a></li>
         </ul>
 
-        <!-- Search Bar in the Header -->
-        <div class="search-bar">
-            <input type="text" id="search-input" placeholder="Search recommendations..." onkeyup="searchRecommendations()">
-            <button type="button" id="reset-button" onclick="resetSearch()">✖</button> <!-- Reset Button -->
-        </div>
+        <!-- Search Bar Form -->
+        <form class="search-bar" onsubmit="searchRecommendations(event)">
+            <input type="text" id="search-input" placeholder="Search recommendations..." />
+            <button type="submit" id="search-button">🔍</button>
+            <button type="button" id="reset-button" onclick="resetSearch()">✖</button>
+        </form>
     </nav>
 
     <!-- Main Content -->
     <div class="content">
         <h1>Welcome to Travel Bloom</h1>
-        <p>Your one-stop platform to explore amazing travel destinations and get personalized recommendations for your next adventure. Whether you're looking for serene beaches or vibrant cities, we have you covered!</p>
+        <p>Your one-stop platform to explore amazing travel destinations and get personalized recommendations for your next adventure.</p>
 
         <div class="social-icons">
             <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
