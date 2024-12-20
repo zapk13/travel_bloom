@@ -32,14 +32,8 @@ fetch('travel_recommendation_api.json')
         // Initially hide all recommendations
         recommendationsContainer.style.display = 'none';
 
-        // Function to display countries
+        // Function to display countries and their cities
         countries.forEach(country => {
-            // Add country as a category
-            const countryCard = createCard(country.name, country.cities[0].imageUrl, `Explore cities in ${country.name}`);
-            countryCard.setAttribute('data-category', 'country');
-            recommendationsContainer.appendChild(countryCard);
-
-            // Add each city
             country.cities.forEach(city => {
                 const card = createCard(city.name, city.imageUrl, city.description);
                 card.setAttribute('data-category', 'city');
@@ -61,6 +55,10 @@ fetch('travel_recommendation_api.json')
             card.setAttribute('data-category', 'beach');
             recommendationsContainer.appendChild(card);
         });
+
+        // Add CSS for scrollable container
+        recommendationsContainer.style.maxHeight = 'calc(100vh - 300px)'; // Adjust based on your needs
+        recommendationsContainer.style.overflowY = 'auto';
     })
     .catch(error => {
         console.error('Error fetching data:', error);
@@ -79,31 +77,20 @@ function searchRecommendations(event) {
         
         cards.forEach(card => {
             const category = card.getAttribute('data-category');
-            const country = card.getAttribute('data-country');
             const name = card.querySelector('h3').textContent.toLowerCase();
-            const description = card.querySelector('p').textContent.toLowerCase();
-
-            // Check for category matches
-            const isCategoryMatch = 
-                (searchInput === 'country' && category === 'country') ||
-                (searchInput === 'countries' && category === 'country') ||
-                (searchInput === 'city' && category === 'city') ||
-                (searchInput === 'cities' && category === 'city') ||
-                (searchInput === 'temple' && category === 'temple') ||
-                (searchInput === 'temples' && category === 'temple') ||
-                (searchInput === 'beach' && category === 'beach') ||
-                (searchInput === 'beaches' && category === 'beach');
-
-            // Check for specific location or text matches
-            const isTextMatch = 
-                name.includes(searchInput) || 
-                description.includes(searchInput) ||
-                (country && country.toLowerCase().includes(searchInput));
-
-            if (isCategoryMatch || isTextMatch) {
-                card.style.display = '';
+            
+            // Strict category matching
+            if (searchInput === 'countries' || searchInput === 'country') {
+                card.style.display = category === 'city' ? '' : 'none';
+            } else if (searchInput === 'cities' || searchInput === 'city') {
+                card.style.display = category === 'city' ? '' : 'none';
+            } else if (searchInput === 'temples' || searchInput === 'temple') {
+                card.style.display = category === 'temple' ? '' : 'none';
+            } else if (searchInput === 'beaches' || searchInput === 'beach') {
+                card.style.display = category === 'beach' ? '' : 'none';
             } else {
-                card.style.display = 'none';
+                // For specific location searches, only match the name exactly
+                card.style.display = name.includes(searchInput) ? '' : 'none';
             }
         });
     } else {
@@ -113,15 +100,12 @@ function searchRecommendations(event) {
 
 // Reset function
 function resetSearch() {
-    // Clear the search input
     const searchInput = document.getElementById('search-input');
     searchInput.value = '';
 
-    // Hide the recommendations container
     const recommendationsContainer = document.getElementById('recommendations-container');
     recommendationsContainer.style.display = 'none';
 
-    // Reset the display property of all cards
     const cards = document.querySelectorAll('.recommendation-card');
     cards.forEach(card => {
         card.style.display = '';
