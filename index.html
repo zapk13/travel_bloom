@@ -21,7 +21,7 @@
             align-items: center;
             text-align: center;
             flex-direction: column;
-            overflow-x: hidden; /* Prevent horizontal overflow */
+            overflow-x: hidden;
         }
 
         nav {
@@ -91,11 +91,11 @@
         }
 
         .search-bar button#search-button {
-            font-size: 1em; /* Reduced font-size for text */
+            font-size: 1em;
         }
 
         .search-bar button#reset-button {
-            font-size: 1em; /* Reduced font-size for text */
+            font-size: 1em;
         }
 
         .content {
@@ -127,11 +127,36 @@
             color: #FFD700;
         }
 
+        /* Updated recommendations styles */
         .recommendations {
             margin-top: 30px;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
+            max-height: calc(100vh - 300px);
+            overflow-y: auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+        }
+
+        /* Scrollbar styling */
+        .recommendations::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .recommendations::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .recommendations::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        .recommendations::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
         }
 
         .recommendation-card {
@@ -163,7 +188,6 @@
     </style>
 </head>
 <body>
-
     <!-- Navigation Bar -->
     <nav>
         <ul>
