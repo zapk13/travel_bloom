@@ -29,52 +29,76 @@ fetch('travel_recommendation_api.json')
             return card;
         }
 
+        // Initially hide all recommendations
+        recommendationsContainer.style.display = 'none';
+
         // Function to display countries
-        countries.forEach(country => {
-            country.cities.forEach(city => {
-                const card = createCard(city.name, city.imageUrl, city.description);
-                recommendationsContainer.appendChild(card);
+        function displayCountries() {
+            countries.forEach(country => {
+                country.cities.forEach(city => {
+                    const card = createCard(city.name, city.imageUrl, city.description);
+                    recommendationsContainer.appendChild(card);
+                });
             });
-        });
+        }
 
         // Function to display temples
-        temples.forEach(temple => {
-            const card = createCard(temple.name, temple.imageUrl, temple.description);
-            recommendationsContainer.appendChild(card);
-        });
+        function displayTemples() {
+            temples.forEach(temple => {
+                const card = createCard(temple.name, temple.imageUrl, temple.description);
+                recommendationsContainer.appendChild(card);
+            });
+        }
 
         // Function to display beaches
-        beaches.forEach(beach => {
-            const card = createCard(beach.name, beach.imageUrl, beach.description);
-            recommendationsContainer.appendChild(card);
-        });
+        function displayBeaches() {
+            beaches.forEach(beach => {
+                const card = createCard(beach.name, beach.imageUrl, beach.description);
+                recommendationsContainer.appendChild(card);
+            });
+        }
+
+        // Function to display all categories
+        function displayAll() {
+            displayCountries();
+            displayTemples();
+            displayBeaches();
+        }
+
+        // Search recommendations function
+        function searchRecommendations(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const searchInput = document.getElementById('search-input').value.toLowerCase();
+            const cards = document.querySelectorAll('.recommendation-card');
+
+            // Show the recommendations container when the user starts searching
+            const recommendationsContainer = document.getElementById('recommendations-container');
+            recommendationsContainer.style.display = 'grid'; // Display recommendations when search is made
+
+            // Clear previous recommendations
+            recommendationsContainer.innerHTML = '';
+
+            if (searchInput.includes('country') || searchInput.includes('countries')) {
+                displayCountries();
+            } else if (searchInput.includes('city') || searchInput.includes('cities')) {
+                displayCities();
+            } else if (searchInput.includes('temple') || searchInput.includes('temples')) {
+                displayTemples();
+            } else if (searchInput.includes('beach') || searchInput.includes('beaches')) {
+                displayBeaches();
+            } else {
+                displayAll();
+            }
+        }
+
+        // Reset the search input and display all recommendations
+        function resetSearch() {
+            const searchInput = document.getElementById('search-input');
+            searchInput.value = '';  // Clear the search input
+            displayAll();  // Display all cards
+        }
     })
     .catch(error => {
         console.error('Error fetching data:', error);
     });
-
-// Search recommendations function
-function searchRecommendations(event) {
-    event.preventDefault(); // Prevent form submission
-
-    const searchInput = document.getElementById('search-input').value.toLowerCase();
-    const cards = document.querySelectorAll('.recommendation-card');
-
-    cards.forEach(card => {
-        const name = card.querySelector('h3').textContent.toLowerCase();
-        const description = card.querySelector('p').textContent.toLowerCase();
-
-        if (name.includes(searchInput) || description.includes(searchInput)) {
-            card.style.display = '';
-        } else {
-            card.style.display = 'none';
-        }
-    });
-}
-
-// Reset the search input and display all recommendations
-function resetSearch() {
-    const searchInput = document.getElementById('search-input');
-    searchInput.value = '';  // Clear the search input
-    searchRecommendations(event);  // Display all cards
-}
