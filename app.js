@@ -54,7 +54,9 @@ fetch('travel_recommendation_api.json')
     });
 
 // Search recommendations function
-function searchRecommendations() {
+function searchRecommendations(event) {
+    event.preventDefault(); // Prevent form submission
+
     const searchInput = document.getElementById('search-input').value.toLowerCase();
     const cards = document.querySelectorAll('.recommendation-card');
 
@@ -74,6 +76,5 @@ function searchRecommendations() {
 function resetSearch() {
     const searchInput = document.getElementById('search-input');
     searchInput.value = '';  // Clear the search input
-    searchRecommendations();  // Display all cards
+    searchRecommendations(event);  // Display all cards
 }
-
