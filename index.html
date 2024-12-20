@@ -3,108 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Recommendations</title>
+    <title>Home - Travel Bloom</title>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        /* Prevent horizontal overflow */
         body {
+            font-family: 'Urbanist', sans-serif;
             margin: 0;
             padding: 0;
-            overflow-x: hidden; /* Prevent horizontal overflow */
-            font-family: Arial, sans-serif;
+            background-image: url('https://img.freepik.com/free-photo/travel-concept-with-landmarks_23-2149153256.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
         }
 
-        header {
-            background-color: #333;
-            color: white;
-            padding: 20px;
+        nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
         }
 
         nav ul {
-            list-style: none;
+            list-style-type: none;
             padding: 0;
+            margin: 0;
             display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2em;
+        }
+
+        nav ul li a:hover {
+            color: #FFD700;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 5px;
+            padding: 5px 10px;
+        }
+
+        .search-bar input {
+            border: none;
+            padding: 8px;
+            font-size: 1em;
+            border-radius: 5px;
+            outline: none;
+            width: 250px;
+        }
+
+        .search-bar button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .search-bar button:hover {
+            color: #FFD700;
+        }
+
+        .content {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 100px 20px 0;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .social-icons a {
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 2em;
+            color: white;
+        }
+
+        .social-icons a:hover {
+            color: #FFD700;
+        }
+
+        .recommendations {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
         }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        #search-form {
-            margin-top: 20px;
-            display: flex;
-            gap: 10px;
-        }
-
-        #search-form input {
-            padding: 10px;
-            width: 200px;
-        }
-
-        #search-form button {
-            padding: 10px 15px;
-            background-color: #555;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        #search-form button:hover {
-            background-color: #777;
-        }
-
-        /* Styling for the recommendation cards */
         .recommendation-card {
-            width: 200px;
-            margin: 10px;
-            padding: 15px;
-            background-color: #f1f1f1;
-            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 20px;
             text-align: center;
-            display: inline-block;
         }
 
         .recommendation-card img {
             width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 5px;
+            height: auto;
+            border-radius: 10px;
         }
 
         .recommendation-card h3 {
-            font-size: 1.2em;
-            margin: 10px 0;
+            margin: 15px 0;
+            font-size: 1.5em;
         }
 
         .recommendation-card p {
             font-size: 1em;
-            color: #666;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header with Search Form -->
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
 
-        <form id="search-form" onsubmit="searchRecommendations(event)">
-            <input type="text" id="search-input" placeholder="Search..." required>
-            <button type="submit">Search</button>
-            <button type="button" onclick="resetSearch()">Reset</button>
+        <!-- Search Bar Form -->
+        <form class="search-bar" onsubmit="searchRecommendations(event)">
+            <input type="text" id="search-input" placeholder="Search recommendations..." />
+            <button type="submit" id="search-button">🔍</button>
+            <button type="button" id="reset-button" onclick="resetSearch()">✖</button>
         </form>
-    </header>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h1>Welcome to Travel Bloom</h1>
+        <p>Your one-stop platform to explore amazing travel destinations and get personalized recommendations for your next adventure.</p>
+
+        <div class="social-icons">
+            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
 
     <!-- Recommendations Section -->
-    <div id="recommendations-container" style="display: none;"></div>
+    <div class="recommendations" id="recommendations-container"></div>
 
     <script src="app.js"></script>
 </body>
