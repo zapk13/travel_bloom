@@ -21,6 +21,7 @@
             align-items: center;
             text-align: center;
             flex-direction: column;
+            overflow-x: hidden; /* Prevent horizontal overflow */
         }
 
         nav {
@@ -89,6 +90,14 @@
             color: #FFD700;
         }
 
+        .search-bar button#search-button {
+            font-size: 1em; /* Reduced font-size for text */
+        }
+
+        .search-bar button#reset-button {
+            font-size: 1em; /* Reduced font-size for text */
+        }
+
         .content {
             background-color: rgba(0, 0, 0, 0.6);
             padding: 30px;
@@ -146,6 +155,11 @@
         .recommendation-card p {
             font-size: 1em;
         }
+
+        /* Prevent overflow on all levels */
+        * {
+            box-sizing: border-box;
+        }
     </style>
 </head>
 <body>
@@ -161,8 +175,8 @@
         <!-- Search Bar Form -->
         <form class="search-bar" onsubmit="searchRecommendations(event)">
             <input type="text" id="search-input" placeholder="Search recommendations..." />
-            <button type="submit" id="search-button">🔍</button>
-            <button type="button" id="reset-button" onclick="resetSearch()">✖</button>
+            <button type="submit" id="search-button">Search</button>
+            <button type="button" id="reset-button" onclick="resetSearch()">Reset</button>
         </form>
     </nav>
 
