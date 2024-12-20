@@ -83,5 +83,16 @@ function searchRecommendations(event) {
 function resetSearch() {
     const searchInput = document.getElementById('search-input');
     searchInput.value = '';  // Clear the search input
-    searchRecommendations(event);  // Display all cards
+
+    // Show all the cards again by making them visible
+    const recommendationsContainer = document.getElementById('recommendations-container');
+    const cards = document.querySelectorAll('.recommendation-card');
+
+    // Display all cards by resetting the display property
+    cards.forEach(card => {
+        card.style.display = ''; // Show all the cards
+    });
+
+    // Optionally, you can hide the recommendations container if no cards are found:
+    // recommendationsContainer.style.display = 'none';
 }
