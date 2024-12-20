@@ -29,6 +29,9 @@ fetch('travel_recommendation_api.json')
             return card;
         }
 
+        // Initially hide all recommendations
+        recommendationsContainer.style.display = 'none';
+
         // Function to display countries
         countries.forEach(country => {
             country.cities.forEach(city => {
@@ -59,6 +62,10 @@ function searchRecommendations(event) {
 
     const searchInput = document.getElementById('search-input').value.toLowerCase();
     const cards = document.querySelectorAll('.recommendation-card');
+
+    // Show the recommendations container when the user starts searching
+    const recommendationsContainer = document.getElementById('recommendations-container');
+    recommendationsContainer.style.display = 'grid'; // Display recommendations when search is made
 
     cards.forEach(card => {
         const name = card.querySelector('h3').textContent.toLowerCase();
