@@ -60,50 +60,6 @@
             color: #FFD700; /* Hover effect on links */
         }
 
-        .search-container {
-            display: flex;
-            align-items: center;
-            margin-left: 30px;
-        }
-
-        .search-container input[type="text"] {
-            padding: 8px;
-            width: 200px;
-            font-size: 1.2em;
-            border-radius: 5px;
-            border: none;
-        }
-
-        .search-container button {
-            padding: 8px 16px;
-            font-size: 1.2em;
-            margin-left: 10px;
-            background-color: #FFD700;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .search-container button:hover {
-            background-color: #FFA500;
-        }
-
-        .reset-button {
-            padding: 8px 16px;
-            font-size: 1.2em;
-            margin-left: 10px;
-            background-color: #FF6347;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .reset-button:hover {
-            background-color: #FF4500;
-        }
-
         /* Content Section */
         .content {
             background-color: rgba(0, 0, 0, 0.6); /* Dark background for readability */
@@ -135,39 +91,33 @@
         }
 
         /* Recommendations Section */
-        .recommendations-container {
-            margin-top: 50px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+        .recommendations {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
         }
 
-        .city-card {
-            border: 1px solid #ddd;
-            padding: 10px;
-            width: 250px;
+        .recommendation-card {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 20px;
             text-align: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            margin: 10px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 8px;
         }
 
-        .city-card img {
+        .recommendation-card img {
             width: 100%;
             height: auto;
-            border-radius: 5px;
+            border-radius: 10px;
         }
 
-        .city-card h3 {
+        .recommendation-card h3 {
+            margin: 15px 0;
             font-size: 1.5em;
-            margin-top: 10px;
-            color: #333;
         }
 
-        .city-card p {
+        .recommendation-card p {
             font-size: 1em;
-            color: #555;
         }
     </style>
 </head>
@@ -179,12 +129,6 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="contact.html">Contact Us</a></li>
-            <!-- Search bar in navbar -->
-            <form class="search-container">
-                <input type="text" id="search-input" placeholder="Search destinations...">
-                <button type="submit">Search</button>
-                <button type="reset" class="reset-button">Reset</button> <!-- Reset Button -->
-            </form>
         </ul>
     </nav>
 
@@ -192,7 +136,7 @@
     <div class="content">
         <h1>Welcome to Travel Bloom</h1>
         <p>Your one-stop platform to explore amazing travel destinations and get personalized recommendations for your next adventure. Whether you're looking for serene beaches or vibrant cities, we have you covered!</p>
-        
+
         <div class="social-icons">
             <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
             <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
@@ -202,38 +146,8 @@
     </div>
 
     <!-- Recommendations Section -->
-    <div class="recommendations-container" id="recommendations-container">
-        <!-- Recommendations will be dynamically inserted here by JavaScript -->
-    </div>
+    <div class="recommendations" id="recommendations-container"></div>
 
-    <!-- Link to JavaScript file -->
-    <script>
-        // Fetching data from the JSON file
-        fetch('travel_recommendation_api.json')
-            .then(response => response.json())
-            .then(data => {
-                console.log(data); // Log the fetched data to check if it works
-
-                // Dynamically create the city cards and insert them into the DOM
-                const container = document.getElementById('recommendations-container');
-
-                data.forEach(place => {
-                    const cityCard = document.createElement('div');
-                    cityCard.classList.add('city-card');
-
-                    cityCard.innerHTML = `
-                        <img src="${place.imageURL}" alt="${place.name}">
-                        <h3>${place.name}</h3>
-                        <p>${place.description}</p>
-                    `;
-
-                    container.appendChild(cityCard);
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
-    </script>
-
+    <script src="app.js"></script>
 </body>
 </html>
