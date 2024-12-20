@@ -58,41 +58,46 @@ fetch('travel_recommendation_api.json')
 
 // Search recommendations function
 function searchRecommendations(event) {
-    event.preventDefault(); // Prevent form submission
+    event.preventDefault();
 
     const searchInput = document.getElementById('search-input').value.toLowerCase();
+    const recommendationsContainer = document.getElementById('recommendations-container');
     const cards = document.querySelectorAll('.recommendation-card');
 
-    // Show the recommendations container when the user starts searching
-    const recommendationsContainer = document.getElementById('recommendations-container');
-    recommendationsContainer.style.display = 'grid'; // Display recommendations when search is made
+    // Only show container if there's a search term
+    if (searchInput.trim() !== '') {
+        recommendationsContainer.style.display = 'grid';
+        
+        cards.forEach(card => {
+            const name = card.querySelector('h3').textContent.toLowerCase();
+            const description = card.querySelector('p').textContent.toLowerCase();
 
-    cards.forEach(card => {
-        const name = card.querySelector('h3').textContent.toLowerCase();
-        const description = card.querySelector('p').textContent.toLowerCase();
-
-        if (name.includes(searchInput) || description.includes(searchInput)) {
-            card.style.display = '';
-        } else {
-            card.style.display = 'none';
-        }
-    });
+            if (name.includes(searchInput) || description.includes(searchInput)) {
+                card.style.display = '';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    } else {
+        // If search is empty, hide the container
+        recommendationsContainer.style.display = 'none';
+    }
 }
 
-// Reset the search input and display all recommendations
+// Reset function
 function resetSearch() {
+    // Clear the search input
     const searchInput = document.getElementById('search-input');
-    searchInput.value = '';  // Clear the search input
+    searchInput.value = '';
 
-    // Show all the cards again by making them visible
+    // Hide the recommendations container
     const recommendationsContainer = document.getElementById('recommendations-container');
+    recommendationsContainer.style.display = 'none';
+
+    // Reset the display property of all cards
+    // This ensures they'll be visible next time the container is shown
     const cards = document.querySelectorAll('.recommendation-card');
-
-    // Display all cards by resetting the display property
     cards.forEach(card => {
-        card.style.display = ''; // Show all the cards
+        card.style.display = '';
     });
-
-    // Optionally, you can hide the recommendations container if no cards are found:
-    // recommendationsContainer.style.display = 'none';
 }
