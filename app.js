@@ -55,10 +55,6 @@ fetch('travel_recommendation_api.json')
             card.setAttribute('data-category', 'beach');
             recommendationsContainer.appendChild(card);
         });
-
-        // Add CSS for scrollable container
-        recommendationsContainer.style.maxHeight = 'calc(100vh - 300px)'; // Adjust based on your needs
-        recommendationsContainer.style.overflowY = 'auto';
     })
     .catch(error => {
         console.error('Error fetching data:', error);
