@@ -2,12 +2,10 @@
 fetch('travel_recommendation_api.json')
     .then(response => response.json())
     .then(data => {
-        // Extract recommendations from the JSON structure
         const countries = data.countries;
         const temples = data.temples;
         const beaches = data.beaches;
 
-        // Get the container where we will append the recommendation cards
         const recommendationsContainer = document.getElementById('recommendations-container');
 
         // Function to create recommendation cards
@@ -54,3 +52,28 @@ fetch('travel_recommendation_api.json')
     .catch(error => {
         console.error('Error fetching data:', error);
     });
+
+// Search recommendations function
+function searchRecommendations() {
+    const searchInput = document.getElementById('search-input').value.toLowerCase();
+    const cards = document.querySelectorAll('.recommendation-card');
+
+    cards.forEach(card => {
+        const name = card.querySelector('h3').textContent.toLowerCase();
+        const description = card.querySelector('p').textContent.toLowerCase();
+
+        if (name.includes(searchInput) || description.includes(searchInput)) {
+            card.style.display = '';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+// Reset the search input and display all recommendations
+function resetSearch() {
+    const searchInput = document.getElementById('search-input');
+    searchInput.value = '';  // Clear the search input
+    searchRecommendations();  // Display all cards
+}
+
